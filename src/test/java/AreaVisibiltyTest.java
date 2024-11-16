@@ -15,14 +15,14 @@ public class AreaVisibiltyTest extends BaseTest
     @Test
     @DisplayName("Тест на переход к разделу Соусы")
 
-    public void areaSaucesVisibilityTest() {
+    public void areaSaucesVisibilityTest() throws InterruptedException {
         home.clickOnSaucesLink();
         assertTrue(home.isSaucesIsDisplayed());
     }
 
     @Test
     @DisplayName("Тест на переход к разделу Начинки")
-    public void areaFillingsVisibilityTest() {
+    public void areaFillingsVisibilityTest() throws InterruptedException {
         home.clickOnFillingsLink();
         assertTrue(home.isFillingsIsDisplayed());
     }

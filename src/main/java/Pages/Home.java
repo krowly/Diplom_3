@@ -1,7 +1,9 @@
 package Pages;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static Constants.HomePage.*;
 
@@ -24,8 +26,8 @@ public class Home extends BasePage {
     public void goToConstructor()
     {
         clickElement(
-
-                constructorButton);
+                constructorButton
+        );
     }
     @Step("Переход в ленту заказов")
     public void goToOrdersFeed()
@@ -48,15 +50,15 @@ public class Home extends BasePage {
 
     @Step("Проверить видимость булок")
     public boolean isBunsIsDisplayed() {
-        return getVisibility(buns);
+        return ifActive(bunsLink);
     }
     @Step("Проверить видимость соусов")
     public boolean isSaucesIsDisplayed() {
-        return getVisibility(sauces);
+        return ifActive(saucesLink);
     }
     @Step("Проверить видимость начинок")
     public boolean isFillingsIsDisplayed() {
-        return getVisibility(fillings);
+        return ifActive(fillingsLink);
     }
     @Step
     public boolean checkFeed(){
@@ -72,5 +74,11 @@ public class Home extends BasePage {
         clickElement(logo);
     }
 
+
+    boolean ifActive(By element){
+        String classAttribute = wait.until(ExpectedConditions.visibilityOfElementLocated(element)).getAttribute("class");
+        System.out.println(classAttribute);
+        return classAttribute.contains("tab_tab_type_current__2BEPc");
+    }
 
 }

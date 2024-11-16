@@ -31,7 +31,7 @@ public class SignUpAndLoginTest extends BaseTest {
         assertEquals(pj,actual_pj);
     }
     @Test
-    @DisplayName("Регистраци и вход через Форму регистрации.")
+    @DisplayName("Регистрация и вход через Форму регистрации.")
     public void LogInTest4() {
         signUpAndLogin4();
         PojoUser actual_pj = acc.getData();

@@ -19,11 +19,12 @@ public class BasePage {
     void clickElement(By element) {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
+
     void sendKeys(By element, String keys)
     {
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(keys);
@@ -37,5 +38,4 @@ public class BasePage {
     boolean getVisibility(By element){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(element)).isDisplayed();
     }
-
 }

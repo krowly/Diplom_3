@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 public class HomePage {
     //Ccылки меню
     public final static By bunsLink = By.xpath("//span[text()='Булки']/..");
-    public final static By saucesLink = By.xpath("//span[text()='Соусы']");
-    public final static By fillingsLink = By.xpath("//span[text()='Начинки']");
+    public final static By saucesLink = By.xpath("//span[text()='Соусы']/..");
+    public final static By fillingsLink = By.xpath("//span[text()='Начинки']/..");
 
     //Локатор булок
     public final static  By buns = By.xpath("//h2[contains(text(),'Булки') ]");

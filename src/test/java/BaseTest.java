@@ -10,9 +10,16 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 
 public class BaseTest {
 
@@ -26,10 +33,12 @@ public class BaseTest {
     static PojoUser pj;
     static WebDriver driver;
     @Before
-    public void setup()
-     {
-         driver = getWebDriver("chrome");
-
+    public void setup(){
+        try {
+            driver = getWebDriver("chrome");
+        } catch (MalformedURLException e) {
+            System.out.println("error" + e.toString());
+        }
          acc = new Account(driver);
          home = new Home(driver);
          login = new Login(driver);
@@ -43,14 +52,16 @@ public class BaseTest {
          pj = new PojoUser(name,email,password);
      }
 
-    public static WebDriver getWebDriver(String browserName) {
+    public static WebDriver getWebDriver(String browserName) throws MalformedURLException {
         ChromeOptions chromeOptions = new ChromeOptions();
         switch (browserName) {
             case "chrome":
-                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--remote-allow-origins=*","--headless");
+                chromeOptions.setBinary("C:/Program Files/Google/Chrome/Application/chrome.exe");
                 return new ChromeDriver(chromeOptions);
+
             case "yandex":
-                chromeOptions.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
+                chromeOptions.addArguments("--remote-allow-origins=*","--headless");
                 return new ChromeDriver(chromeOptions.setBinary("C:/Users/user/AppData/Local/Yandex/YandexBrowser/Application/browser.exe"));
             default:
                 throw new RuntimeException("Неподдерживаемый браузер");
@@ -68,14 +79,11 @@ public class BaseTest {
         login.sendLogInData(pj);
         login.clickLogInButton();
     }
-
-
     @Step("Регистрация и вход через кнопку Личный кабинет")
     public void signUpAndLoginAccBut()
     {
         home.accountButtonClick();
         sign();
-        driver.get(URLS.loginURL);
         log();
         home.accountButtonClick();
     }
@@ -83,7 +91,6 @@ public class BaseTest {
     public void signUpAndLoginEnterAccBut(){
         home.loginButtonMain();
         sign();
-        driver.get(URLS.loginURL);
         log();
         home.accountButtonClick();
     }

@@ -17,6 +17,7 @@ public class Account extends BasePage{
     @Step("Прочитать данные об отправленном пароле")
     public PojoUser getData()
     {
+
         return new PojoUser(getValue(profileName),getValue(profileEmail),"password");
     }
 
