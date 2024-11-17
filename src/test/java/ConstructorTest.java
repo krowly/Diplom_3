@@ -7,14 +7,14 @@ public class ConstructorTest extends BaseTest {
     @Test
     @DisplayName("Тест на переход к разделу Конструктор")
     public void GoToOrderFeed() {
-        signUpAndLoginAccBut();
+        LoginAccBut();
         home.goToConstructor();
         assertTrue(home.checkConstructor());
     }
     @Test
     @DisplayName("Тест на переход к разделу Лента Заказов")
     public void goToConstructorTest() {
-        signUpAndLoginAccBut();
+        LoginAccBut();
         home.goToOrdersFeed();
         assertTrue(home.checkFeed());
     }

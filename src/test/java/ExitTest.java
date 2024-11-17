@@ -1,3 +1,4 @@
+import RestApis.BaseUserTest;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Test;
@@ -8,14 +9,9 @@ public class ExitTest extends BaseTest {
     @Test
     @DisplayName("Регистрация и выход из аккаунта ")
     public void accountExit() {
-        signUpAndLoginAccBut();
+        LoginAccBut();
         acc.logOutButtonClick();
         home.clickLogo();
         assertTrue(home.isBunsIsDisplayed());
-    }
-    @After
-    @Override
-    public void tearDown() {
-        driver.quit();
     }
 }
